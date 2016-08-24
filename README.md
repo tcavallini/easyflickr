@@ -1,5 +1,7 @@
-## Instalação
 
+Pacote para leitura de álbums e fotos do Flickr utilizando o pacote phpFlickr Class 3.0 escrito por Dan Coulter (dancoulter@users.sourceforge.net).
+
+## Instalação
 Para instalar, execute o comando abaixo no seu terminal:
 
 ```shell
@@ -69,4 +71,8 @@ Route::get('/', function () {
     
 });
 ```
+
+
+## License
+The package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
