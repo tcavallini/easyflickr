@@ -1,5 +1,5 @@
 
-Pacote para leitura de álbums e fotos do Flickr utilizando o pacote phpFlickr Class 3.0 escrito por Dan Coulter (dancoulter@users.sourceforge.net).
+Adaptação para Laravel do pacote para leitura de álbums e fotos do Flickr utilizando o pacote phpFlickr Class 3.0 escrito por Dan Coulter (dancoulter@users.sourceforge.net).
 
 ## Instalação
 Para instalar, execute o comando abaixo no seu terminal:
@@ -72,7 +72,8 @@ Route::get('/', function () {
 });
 ```
 
-
 ## License
 The package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
+## Contributing
+Anyone is welcome to contribute. Fork, make your changes, and then submit a pull request.
