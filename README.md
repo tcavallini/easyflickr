@@ -1,58 +1,72 @@
 ## Instalação
 
-Para instalar, adicione o seguinte trecho de código ems eu composer.json:
+Para instalar, execute o comando abaixo no seu terminal:
 
-```javascript
-"repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/Webeleven/rateable"
-    }
-  ],
-  "require": {
-    ...
-    "webeleven/rateable": "v1.0"
-  },
+```shell
+composer require webeleven/easyflickr
 ```
 
-Depois de alterar seu composer.json, adiocione o ServiceProvider do pacote no seu config/app.php conforme a linha abaixo:
+Após a instalação, adicione o ServiceProvider do pacote no seu config/app.php conforme as linhas abaixo:
 
+####Service provider
 ```php
-Webeleven\Rateable\RateableServiceProvider::class,
+Webeleven\EasyFlickr\EasyFlickrServiceProvider::class,
+```
+
+####Facade
+```php
+'EasyFlickr' => Webeleven\EasyFlickr\Facades\EasyFlickr::class,
 ```
 
 ## Vendor Publish
-Execute o comando abaixo para transferir as configs e migrations do pacote para seu projeto:
+Execute o comando abaixo para transferir as configs do pacote para seu projeto:
 
 ```shell
-php artisan vendor:publish --provider="Webeleven\Rateable\RateableServiceProvider"
+php artisan vendor:publish --provider="Webeleven\EasyFlickr\EasyFlickrServiceProvider"
 ```
 
-## Migrations
-Para executar as *migrations* do pacote é necessário executar manualmente no seu console o comando abaixo:
-
-```shell
-php artisan migrate --path=./vendor/webeleven/rateable/src/migrations
-```
-
-## Middleware e Provider
-
-O pacote fornece uma implementação padrão para as middlwares de autenticação e provedor de usuário autenticado do site.
-
-Caso haja necessidade, é possível alterar as implementações das interfaces para uma já criada pelo desenvolvedor do site pelo arquivo config/rateable.php:
+##Configuração
+Para utilizar altere os valores de configuração no arquivo easyflickr.php localizado no diretório config, ou se preferir defina as variáveis de ambiente no seu arquivo .env 
 
 ```php
 return [
-    'auth_middleware' => \Webeleven\Rateable\Middleware\DefaultRateableAuth::class,
-    'user_provider' => \Webeleven\Rateable\Services\DefaultUserProvider::class
+    'flickr_key' => env('FLICKR_KEY'),
+    'flickr_secret' => env('FLICKR_SECRET'),
+    'flickr_user' => env('FLICKR_USER')
 ];
 ```
+##Utilização
 
-## Path da interface Middleware:
+####Método GetAlbumInfo
+Lista as informações sobre um determinado álbum (photoset) do Flickr
+
 ```php
-Webeleven\Rateable\MiddlewareRateableAuth.php
+Route::get('/', function () {
+
+    return EasyFlickr::getAlbumInfo('PHOTOSET_ID');
+     
+});
 ```
-## Path da interface de Provedor de usuário:
+
+####Método getAlbums
+Lista as fotos de um determinado álbum (photoset) do Flickr, os parâmetros ($page, $limit) são opcionais, mas por padrão são preenchidos por $page=1 e $limit=10.  
+
 ```php
-Webeleven\Rateable\Interfaces\UserProvider.php
+Route::get('/', function () {
+    
+    return EasyFlickr::getAlbums($page, $limit); 
+
+});
 ```
+
+####Método getPhotosByAlbum
+Lista as fotos de um determinado álbum (photoset) do Flickr
+
+```php
+Route::get('/', function () {
+    
+    return EasyFlickr::getPhotosByAlbum('PHOTOSET_ID'); 
+    
+});
+```
+
