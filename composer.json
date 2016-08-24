@@ -1,0 +1,29 @@
+{
+  "name": "webeleven/easyflickr",
+  "description": "EasyFlickr manager package for Laravel",
+  "keywords": [
+    "EasyFlickr",
+    "flickr",
+    "phpflickr",
+    "laravel plugin"
+  ],
+  "authors": [
+    {
+      "name": "Thiago Cavallini",
+      "email": "tcavallini@webeleven.com.br"
+    },
+    {
+      "name": "Felipe Alcântara",
+      "email": "falcantara@webeleven.com.br"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "illuminate/support": "5.1.*|5.2.*|5.3.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Webeleven\\EasyFlickr\\": "src/"
+    }
+  }
+}
